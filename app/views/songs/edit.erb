@@ -3,16 +3,16 @@
 <form action="/songs/<%= @song.slug %>" method="POST">
    <input type= "hidden" name="_method" value="PATCH">
    <label for="Name">Song Name:</label>
-   <input id="Name" type="text" name="song[name]" value= "<%= @song.name %>">
+   <input id="Name" type="text" name="Name" value="<%= @song.name %>">
 
    <label for="Artist Name">Update Artist:</label>
-   <input id="Artist Name" type="text" name="artist[name]" value= <%= @song.artist.name %>><br>
+   <input id="Artist Name" type="text" name="Artist Name" value="<%= @song.artist.name %>"><br><br>
 
+   <label>Genres:</label>
    <% Genre.all.each do |genre| %>
-   <label for=<%= genre.name%>>Update Genre:</label><br>
-      <input type="checkbox" id="<%= genre.name %>" name="genres[ ]" value="<%= genre.id %>" <%='checked' if @song.genres.include?(genre) %>><%= genre.name %></input>
+      <input type="checkbox" id="<%= genre.name %>" name="genres[]" value="<%= genre.id %>" <%= 'checked' if @song.genres.include?(genre) %>> <%= genre.name %>
     <% end %>
-    <br>
+    <br><br>
 
     <input type="submit" value="Save">
 
